@@ -29,6 +29,8 @@
 	<properties>
 		<java.version>17</java.version>
 		<vaadin.version>24.4.3</vaadin.version>
+		<JUnit-test.version>4.13.2</JUnit-test.version>
+		<mockhito-core.version>5.12.0</mockhito-core.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,6 +46,18 @@
 			<groupId>com.github.rjeschke</groupId>
 			<artifactId>txtmark</artifactId>
 			<version>0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${JUnit-test.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockhito-core.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
