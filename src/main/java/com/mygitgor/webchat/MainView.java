@@ -11,8 +11,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
+import lombok.Data;
+import lombok.Setter;
 
+import java.util.Collection;
+import java.util.Collections;
 
+@Data
 @Route("")
 public class MainView extends VerticalLayout {
     private final Storage storage;
@@ -22,6 +27,7 @@ public class MainView extends VerticalLayout {
     private VerticalLayout chat;
     private VerticalLayout login;
     private String user = "";
+    private UI ui;
 
 
     public MainView(Storage storage) {
@@ -55,8 +61,13 @@ public class MainView extends VerticalLayout {
         add(chat);
         chat.setVisible(false);
 
+        Collection<Storage.ChatMessage> messages = storage.getMessages();
+        if (messages == null) {
+            messages = Collections.emptyList();
+        }
+
         grid = new Grid<>();
-        grid.setItems(storage.getMessages());
+        grid.setItems(messages);
         grid.addColumn(new ComponentRenderer<>(message -> new Html(renderRow(message))))
                 .setAutoWidth(true);
 
@@ -80,9 +91,10 @@ public class MainView extends VerticalLayout {
         );
     }
 
+
     public void onMessage(Storage.ChatEvent event){
         if(getUI().isPresent()){
-            UI ui = getUI().get();
+            ui = getUI().get();
             ui.getSession().lock();
             ui.access(() -> grid.getDataProvider().refreshAll());
             ui.getPage().executeJs("$0._scrollToIndex($1)", grid, storage.size());
