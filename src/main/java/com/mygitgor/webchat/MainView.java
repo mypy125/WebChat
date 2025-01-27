@@ -12,10 +12,12 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Collection;
 import java.util.Collections;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Route("")
 public class MainView extends VerticalLayout {
