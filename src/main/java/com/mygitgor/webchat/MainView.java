@@ -12,7 +12,6 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
 import lombok.Data;
-import lombok.Setter;
 
 import java.util.Collection;
 import java.util.Collections;
